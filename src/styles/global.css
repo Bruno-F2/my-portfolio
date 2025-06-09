@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+/* Theme */
+
+@theme {
+
+	--font-nunitoSans: "Nunito Sans", sans-serif; 
+
+	--color-newBlue-50: oklch(0.6231 0.188 259.81);
+  --color-newBlue-100: oklch(0.5461 0.2152 262.88);
+  --color-newBlue-200: oklch(0.4244 0.1809 265.64);
+  --color-newGrey-100: oklch(0.551 0.0234 264.36);
+  --color-newGrey-200: oklch(0.2781 0.0296 256.85);
+
+	--breakpoint-smp: 58rem;
+}
+
+/* Body */
+
+body {
+  max-height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+
+
+::-webkit-scrollbar {
+  width: 7px;
+	height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.4244 0.1809 265.64);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.5461 0.2152 262.88);
+}
+
+/* Link underline */
+
+.link-underline {
+		border-bottom-width: 0;
+		background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+		background-size: 0 2px;
+		background-position: 50% 100%;
+		background-repeat: no-repeat;
+		transition: background-size .3s ease-in-out;
+	}
+
+	.link-underline-black {
+		background-image: linear-gradient(transparent, transparent), linear-gradient(#1e40af, #1e40af)
+	}
+
+	.link-underline:hover {
+		background-size: 100% 2px;
+		background-position: 50% 100%;
+	}
+
