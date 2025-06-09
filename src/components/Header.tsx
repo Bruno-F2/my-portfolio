@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, ArrowUp } from "lucide-react";
 
@@ -15,8 +15,36 @@ export default function Header() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Evitar scroll al abrir el menú
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  // Cierra el menú si se hace click afuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   // Efecto para el botón de scroll
   useEffect(() => {
@@ -40,8 +68,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex justify-between pt-0 pb-0 pr-5 pl-5">
-        <div className="p-2">
+      <header className="flex justify-between items-center py-2 px-5 z-50 relative bg-white">
+        <div className="p-2 z-50">
           <a href="/">
             <motion.img
               src="/logo.png"
@@ -77,7 +105,7 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="md:hidden p-2 pr-1 self-center cursor-pointer"
+          className="md:hidden p-2 pr-1 self-center cursor-pointer z-50"
           onClick={toggleMenu}
           aria-label="Toggle Menu"
           whileTap={{ scale: 0.95 }}
@@ -91,25 +119,26 @@ export default function Header() {
             <Menu className="text-newBlue-200" size={24} />
           )}
         </motion.button>
-
-        {/* Mobile Navigation */}
       </header>
+
+      {/* Mobile Navigation Fullscreen*/}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden py-4 px-4"
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            ref={menuRef}
+            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <nav className="flex flex-col space-y-4">
+            <nav className="flex flex-col space-y-6 items-center">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.title}
                   href={link.href}
-                  className="text-newBlue-200 font-semibold p-2 self-center"
-                  onClick={toggleMenu}
+                  className="text-newBlue-200 font-semibold text-xl"
+                  onClick={() => setIsOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
@@ -127,6 +156,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+      {/* Botón para ir arriba */}
       <AnimatePresence>
         {showScrollButton && (
           <motion.button
