@@ -15,20 +15,21 @@ const skills = [
     icon: <Terminal size={30} />,
     title: "Creación de Landing Pages",
     description:
-      "Creo de Landing Pages para convertir a tus visitantes en clientes.",
+      "Creo Landing Pages para convertir a tus visitantes en clientes.",
     langTitle: "Lenguajes",
     languages: ["HTML", "CSS", "Javascript"],
     toolsTitle: "Herramientas de Desarrollo",
     tools: [
+      "React",
+      "Next JS",
       "Astro JS",
       "Tailwind CSS",
       "Bootstrap",
-      "Next JS",
-      "React",
       "Shadcn UI",
-      "Netlify",
       "Github",
+      "Netlify",
       "VS Code",
+      "Wordpress",
     ],
   },
   {
@@ -42,10 +43,13 @@ const skills = [
   },
 ];
 
-export default function Skills() {
+export default function Skills({ id }) {
   return (
     <>
-      <section className="mt-[-8rem] md:mt-[-12rem] pb-4 py-[5rem] px-[1.5rem]">
+      <section
+        className="mt-[-8rem] md:mt-[-12rem] pb-4 py-[5rem] px-[1.5rem]"
+        id={id}
+      >
         <div className="pt-0 mb-0 ml-auto mr-auto relative w-auto">
           <div className="p-0 rounded-xl bg-white block">
             <div>

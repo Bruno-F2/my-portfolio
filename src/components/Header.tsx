@@ -6,11 +6,10 @@ import { Menu, X, ArrowUp } from "lucide-react";
 
 export default function Header() {
   const navLinks = [
-    { title: "Inicio", href: "/" },
-    { title: "Sobre mí", href: "/#" },
-    { title: "Servicios", href: "/#" },
-    { title: "Portfolio", href: "/#" },
-    { title: "Contáctame", href: "/#" },
+    // { title: "Inicio", id: "header" },
+    { title: "Sobre mí", id: "about" },
+    { title: "Servicios", id: "skills" },
+    { title: "Contáctame", id: "contact" },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +17,20 @@ export default function Header() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const scrollToSection = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -80;
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+
+      setIsOpen(false);
+    }
+  };
 
   // Evitar scroll al abrir el menú
   useEffect(() => {
@@ -72,7 +85,8 @@ export default function Header() {
         <div className="p-2 z-50">
           <a href="/">
             <motion.img
-              src="/logo.png"
+              src="src/assets/logo.png"
+              loading="eager"
               alt="Logo"
               whileHover={{ scale: 1.01 }}
               className="w-24 md:w-36"
@@ -86,8 +100,9 @@ export default function Header() {
           {navLinks.map((link) => {
             return (
               <motion.a
-                key={link.title}
-                href={link.href}
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => scrollToSection(e, link.id)}
                 className="font-semibold text-newBlue-200 opacity-80 p-2 hover:opacity-100 transition-opacity"
                 whileHover={{
                   scale: 1.05,
@@ -135,10 +150,11 @@ export default function Header() {
             <nav className="flex flex-col space-y-6 items-center">
               {navLinks.map((link, index) => (
                 <motion.a
-                  key={link.title}
-                  href={link.href}
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => scrollToSection(e, link.id)}
                   className="text-newBlue-200 font-semibold text-xl"
-                  onClick={() => setIsOpen(false)}
+                  // onClick={() => setIsOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
@@ -161,7 +177,7 @@ export default function Header() {
         {showScrollButton && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-40 bg-newBlue-200 text-white p-3 rounded-full shadow-lg"
+            className="fixed bottom-8 right-8 z-40 bg-newBlue-200 text-white p-3 rounded-full shadow-lg hover:cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
