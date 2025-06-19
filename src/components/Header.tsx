@@ -85,8 +85,7 @@ export default function Header() {
         <div className="p-2 z-50">
           <a href="/">
             <motion.img
-              src="src/assets/logo.png"
-              loading="eager"
+              src="/logo.png"
               alt="Logo"
               whileHover={{ scale: 1.01 }}
               className="w-24 md:w-36"

@@ -19,10 +19,14 @@
 
 /* Body */
 
+html {
+  scroll-behavior: smooth;
+	scroll-padding-top: 6rem;
+}
+
 body {
   max-height: 100%;
   overflow-y: auto;
-  scroll-behavior: smooth;
 }
 
 /* Scrollbar */
