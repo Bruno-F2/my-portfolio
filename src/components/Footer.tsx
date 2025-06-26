@@ -26,7 +26,7 @@ export default function Footer() {
             ))}
           </div>
           <div className="flex justify-center">
-            <p className="text-white">© 2025 Bruno Fernandez. Todos los derechos reservados.</p>
+            <p className="text-white text-center">© 2025 Bruno Fernandez. Todos los derechos reservados.</p>
           </div>
         </div>
       </section>
