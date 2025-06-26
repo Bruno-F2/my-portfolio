@@ -11,10 +11,9 @@ export default function About({ id }) {
               Hola, soy Bruno. Encantado de conocerte.
             </h2>
             <p className="text-white font-normal text-xl">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis
-              fugiat, voluptatibus eius eos, doloribus aliquid perferendis,
-              sequi repellat veritatis saepe obcaecati id facere eveniet
-              similique architecto pariatur. Quas, veritatis cum.
+              Soy un programador web freelancer, que no tiene tanto tiempo de
+              trabajo en el rubro, pero tengo muchas ganas de aprender y mejorar
+              todos los días.
             </p>
           </div>
         </div>

@@ -27,6 +27,7 @@ html {
 body {
   max-height: 100%;
   overflow-y: auto;
+	font-family: var(--font-nunitoSans);
 }
 
 /* Scrollbar */
@@ -67,5 +68,18 @@ body {
 	.link-underline:hover {
 		background-size: 100% 2px;
 		background-position: 50% 100%;
+	}
+
+	.contact-btn {
+		padding: 1.25rem 2rem;
+		font-weight: 500;
+		border: 2px solid var(--color-newBlue-100);
+		border-radius: calc(infinity * 1px);
+		transition: all ease;
+		transition-duration: .3s;
+	}
+
+	.contact-btn:hover {
+		background-color: var(--color-newBlue-100);
 	}
 
