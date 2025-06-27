@@ -6,7 +6,7 @@ export default function ContactBody() {
       <div className="">
         <div>
           <img
-            src="avatar.png"
+            src="/avatar.png"
             alt="Avatar"
             className="w-[100px] sm:w-[130px] rounded-full justify-self-center bg-newBlue-200 mt-0"
           />
