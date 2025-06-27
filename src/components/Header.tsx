@@ -9,7 +9,7 @@ export default function Header() {
     // { title: "Inicio", id: "header" },
     { title: "Sobre mí", id: "about" },
     { title: "Servicios", id: "skills" },
-    { title: "Contáctame", id: "contact" },
+    { title: "Contáctame", id: "contact", external: true },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -84,20 +84,26 @@ export default function Header() {
       <header className="flex justify-between items-center py-2 px-5 z-50 relative bg-white">
         <div className="p-2 z-50">
           <a href="/">
-            <motion.img
-              src="/logo.png"
-              alt="Logo"
-              whileHover={{ scale: 1.01 }}
-              className="w-24 md:w-36"
-              transition={{ type: "spring", stiffness: 300 }}
-            />
+            <motion.img src="/logo.png" alt="Logo" className="w-24 md:w-36" />
           </a>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center p-5 space-x-2">
-          {navLinks.map((link) => {
-            return (
+          {navLinks.map((link) =>
+            link.external ? (
+              <motion.a
+                key={link.id}
+                href="/contact"
+                className="font-semibold text-newBlue-200 opacity-80 p-2 hover:opacity-100 transition-opacity"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="link link-underline link-underline-black">
+                  {" "}
+                  {link.title}
+                </span>
+              </motion.a>
+            ) : (
               <motion.a
                 key={link.id}
                 href={`#${link.id}`}
@@ -113,8 +119,8 @@ export default function Header() {
                   {link.title}
                 </span>
               </motion.a>
-            );
-          })}
+            )
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -140,32 +146,48 @@ export default function Header() {
         {isOpen && (
           <motion.div
             ref={menuRef}
-            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center"
+            className="md:hidden fixed inset-0 z-40 bg-white flex flex-col items-center justify-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <nav className="flex flex-col space-y-6 items-center">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => scrollToSection(e, link.id)}
-                  className="text-newBlue-200 font-semibold text-xl"
-                  // onClick={() => setIsOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.2,
-                    delay: 0.1 + index * 0.05,
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {link.title}
-                </motion.a>
-              ))}
+              {navLinks.map((link, index) =>
+                link.external ? (
+                  <motion.a
+                    key={link.id}
+                    href="/contact"
+                    className="text-newBlue-200 font-semibold text-xl"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      delay: 0.1 + index * 0.05,
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {link.title}
+                  </motion.a>
+                ) : (
+                  <motion.a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={(e) => scrollToSection(e, link.id)}
+                    className="text-newBlue-200 font-semibold text-xl"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      delay: 0.1 + index * 0.05,
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {link.title}
+                  </motion.a>
+                )
+              )}
             </nav>
           </motion.div>
         )}

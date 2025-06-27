@@ -1,0 +1,11 @@
+---
+import ContactHeader from "../components/contact/ContactHeader";
+import ContactBody from "../components/contact/ContactBody";
+import Layout from "../layouts/Layout.astro";
+const pageTitle = "Bruno Fernandez - Contacto";
+---
+
+<Layout pageTitle={pageTitle}>
+  <ContactHeader />
+  <ContactBody client:load/>
+</Layout>

@@ -3,7 +3,10 @@ export default function Contact({ id }) {
 
   return (
     <>
-      <section id={id} className="pt-20 pl-6 pr-6 pb-8 md:pl-10 md:pr-10 bg-newBlue-200 mt-6">
+      <section
+        id={id}
+        className="pt-20 pl-6 pr-6 pb-8 md:pl-10 md:pr-10 bg-newBlue-200 mt-6"
+      >
         <div className="grow mt-0 mb-0 ml-auto mr-auto relative w-auto">
           <div className="py-14 px-5 mt-[-9rem] bg-newGrey-200 rounded-xl">
             <div className="smp:flex items-center justify-between text-white text-center">
@@ -17,10 +20,7 @@ export default function Contact({ id }) {
                 </p>
               </div>
               <div className={column}>
-                <a
-                  href="/#"
-                  className="contact-btn"
-                >
+                <a href="/contact" className="contact-btn">
                   ¡Vamos a hacerlo!
                 </a>
               </div>
