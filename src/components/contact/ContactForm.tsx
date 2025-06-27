@@ -29,7 +29,7 @@ export default function ContactForm() {
 
   const onSumbit = async (data: FormData) => {
     try {
-      const res = await fetch(process.env.PUBLIC_FORMSPREE_URL || "", {
+      const res = await fetch(import.meta.env.PUBLIC_FORMSPREE_URL || "", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
