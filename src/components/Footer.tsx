@@ -2,9 +2,21 @@ import { FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 
 export default function Footer() {
   const socialLinks = [
-    { title: "instagram", icon: <FaInstagram size={24} /> },
-    { title: "linkedin", icon: <FaLinkedinIn size={24} /> },
-    { title: "github", icon: <FaGithub size={24} /> },
+    {
+      title: "instagram",
+      href: "https://www.instagram.com/brunof.servicioscreativos/",
+      icon: <FaInstagram size={24} />,
+    },
+    {
+      title: "linkedin",
+      href: "https://www.linkedin.com/in/bruno-fernandez-7390751a4/",
+      icon: <FaLinkedinIn size={24} />,
+    },
+    {
+      title: "github",
+      href: "https://github.com/Bruno-F2",
+      icon: <FaGithub size={24} />,
+    },
   ];
 
   return (
@@ -17,8 +29,9 @@ export default function Footer() {
           <div className="flex justify-center gap-4 my-8">
             {socialLinks.map((link) => (
               <a
-                href=""
                 key={link.title}
+                href={link.href}
+                target="_blank"
                 className="p-2 rounded-full text-white border transition-all ease duration-400 hover:bg-white hover:text-newBlue-200"
               >
                 {link.icon}
@@ -26,7 +39,9 @@ export default function Footer() {
             ))}
           </div>
           <div className="flex justify-center">
-            <p className="text-white text-center">© 2025 Bruno Fernandez. Todos los derechos reservados.</p>
+            <p className="text-white text-center">
+              © 2025 Bruno Fernandez. Todos los derechos reservados.
+            </p>
           </div>
         </div>
       </section>
